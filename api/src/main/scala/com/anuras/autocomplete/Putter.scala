@@ -4,6 +4,7 @@ import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest
 import org.elasticsearch.client.Client
 import org.elasticsearch.common.xcontent.XContentType
 
+//TODO
 //uses java elastic client, switch out elastic4s
 object Putter {
   val phrase = "Joe Surname"
