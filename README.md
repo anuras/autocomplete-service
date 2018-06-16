@@ -3,7 +3,7 @@ I will complete you
 
 ### Build
 
-1. Assembly the populator: `sbt populator/assembly`
+1. Assemble the populator: `sbt populator/assembly`
 2. Publish docker image: `sbt api/docker:publishLocal`
 
 ### Prerequisites
@@ -17,7 +17,7 @@ vm.max_map_count=262144
 ### How to run
 
 1. `docker-compose up -d`
-2. Index ES: `docker exec -d $(docker-compose ps -q autocomplete) java -jar /populator/populator-assembly-0.0.2.jar --inputFile /populator/resources/famouspeople.txt --host elasticsearch --port 9200 --indexName $ES_INDEX_NAME --indexType $ES_INDEX_TYPE`. Check [example file](https://github.com/anuras/autocomplete-service/blob/master/populator/src/test/resources/famouspeople.txt) for reference on the file format.
+2. Index ES: `docker exec -d $(docker-compose ps -q autocomplete) java -jar /populator/populator-assembly-0.0.2.jar --inputFile /populator/resources/famouspeople.txt --host elasticsearch --port 9200 --indexName $ES_INDEX_NAME --indexType $ES_INDEX_TYPE`. Check [example file](https://github.com/anuras/autocomplete-service/blob/master/populator/src/test/resources/famouspeople.txt) for reference on the file format (`<text><whitespace><weight>`).
 3. Check ES is populated: `curl -X GET "localhost:9200/titles/_search"` or `curl -X GET "localhost:9200/titles/job/_count"`
 4. Query the service: 
 ```
@@ -27,3 +27,6 @@ curl -XPOST "http://localhost:8088/autocomplete" -d'
     "numResults": 5
     }'
 ```
+Should respond with suggestions:
+```
+{"queryText":"mar","suggestions":["maria gomes valentim","margaret skeete","maria do couto maia-lopes","maria giuseppa robucci","marie josephine gaudette"],"errorMessage":null}```

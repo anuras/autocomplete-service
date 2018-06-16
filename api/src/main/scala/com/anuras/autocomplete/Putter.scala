@@ -6,6 +6,7 @@ import org.elasticsearch.common.xcontent.XContentType
 
 //TODO
 //uses java elastic client, switch out elastic4s
+//use built in weights in elastic suggester
 object Putter {
   val phrase = "Joe Surname"
   val suggestionPhrase = "Surname Joe"
